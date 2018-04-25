@@ -1,0 +1,232 @@
+{
+  "id"                   : "com-snaplogic-snap-prepare-request_1",
+  "description"          : "The common schema for prepare requests. TODO will add schema/class map id and version",
+  "additionalProperties" : false,
+  "properties" : {
+    "class_id" : {
+      "description" : "Unique class id for the prepare request schema",
+      "type"        : "string",
+      "pattern"     : "^[a-z]+-[^_]*$",
+      "required"    : true
+    },
+    "class_fqid" : {
+      "description" : "Unique class fqid for the prepare request schema. Provide by class_id and class_version.",
+      "type"        : "string",
+      "pattern"     : "^[a-z]+-[^_]*_[0-9]+$",
+      "required"    : true
+    },
+    "class_version" : {
+      "description" : "Version of the prepare request schema.",
+      "type"        : "number",
+      "required"    : true,
+      "minimum"     : 1,
+      "default"     : 2
+    },
+    "api_key" : {
+      "description" : "Proxy token to issue request against sldb.",
+      "type"        : "string",
+      "required"    : true
+    },
+    "user_id" : {
+      "description" : "User id used to issue request against sldb.",
+      "type"        : "string",
+      "required"    : true
+    },
+    "path_id" : {
+      "description" : "The path to the pipeline's project",
+      "type"        : "string",
+      "required"    : true
+    },
+    "data_map" : {
+      "description"          : "Holds the property values for the snap prepare request.",
+      "required"             : true,
+      "additionalProperties" : false,
+      "properties" : {
+        "class_id" : {
+          "description" : "Unique class id for the snap",
+          "type"        : "string",
+          "pattern"     : "^[a-z]+-[^_]*$",
+          "required"    : true
+        },
+        "class_fqid" : {
+          "description" : "Unique class fqid for the snap. Provide by class_id and class_version.",
+          "type"        : "string",
+          "pattern"     : "^[a-z]+-[^_]*_[0-9]+-[a-zA-Z0-9]*",
+          "required"    : true
+        },
+        "class_version" : {
+          "description" : "Version of the Snap class",
+          "type"        : "number",
+          "required"    : true,
+          "minimum"     : 1,
+          "default"     : 2
+        },
+        "class_build_tag" : {
+          "description" : "snap build tag",
+          "type"        : "string",
+          "required"    : true,
+          "default"     : "SNAPSHOT"
+        },
+        "client_id" : {
+          "type" : "string"
+        },
+        "instance_id" : {
+          "type"     : "string",
+          "pattern"  : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+          "required" : true,
+          "default"  : "00000000-0000-0000-0000-000000000000"
+        },
+        "instance_fqid" : {
+          "type"     : "string",
+          "pattern"  : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}_[0-9]+$",
+          "required" : true,
+          "default"  : "00000000-0000-0000-0000-000000000000_1"
+        },
+        "instance_version" : {
+          "type"     : "number",
+          "required" : true,
+          "minimum"  : 1,
+          "default"  : 1
+        },
+        "property_map" : {
+          "required"   : true
+        }
+      }
+    },
+    "env_map" : {
+      "description" : "Holds the parameter values."
+    },
+    "prepare_map" : {
+      "description"          : "Holds the request values for the snap prepare request.",
+      "additionalProperties" : false,
+      "properties" : {
+        "parent_ruuid" : {
+          "description" : "The parent runtime uuid created by the pipeline manager to identify the pipeline.",
+          "type"        : "string",
+          "pattern"     : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+          "required"    : true
+        },
+        "output" : {
+          "description"       : "The provided output views for the snap being prepared.",
+          "patternProperties" : {
+            "^out.*" : {
+              "description"          : "",
+              "additionalProperties" : false,
+              "properties" : {
+                "zone_uris" : {
+                  "patternProperties" : {
+                    "^snap.*" : {
+                      "type"     : "string",
+                      "required" : false
+                    },
+                    "^default_zone$" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  },
+                  "additionalProperties" : false
+                },
+                "method" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "GET",
+                    "POST"
+                  ],
+                  "required" : true
+                },
+                "view_type" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "document",
+                    "binary"
+                  ],
+                  "required" : true
+                }
+              }
+            }
+          }
+        },
+        "error" : {
+          "description"       : "The provided error views for the snap being prepared.",
+          "patternProperties" : {
+            "^err.*" : {
+              "description"          : "",
+              "additionalProperties" : false,
+              "properties" : {
+                "zone_uris" : {
+                  "patternProperties" : {
+                    "^snap.*" : {
+                      "type"     : "string",
+                      "required" : false
+                    },
+                    "^default_zone$" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  },
+                  "additionalProperties" : false
+                },
+                "method" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "GET",
+                    "POST"
+                  ],
+                  "required" : true
+                },
+                "view_type" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "document",
+                    "binary"
+                  ],
+                  "required" : true
+                }
+              }
+            }
+          }
+        },
+        "input" : {
+          "description"       : "The provided input views for snap being prepared.",
+          "patternProperties" : {
+            "^in.*" : {
+              "description"          : "",
+              "additionalProperties" : false,
+              "properties" : {
+                "zone_uris" : {
+                  "patternProperties" : {
+                    "^snap.*" : {
+                      "type"     : "string",
+                      "required" : false
+                    },
+                    "^default_zone$" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  },
+                  "additionalProperties" : false
+                },
+                "method" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "GET",
+                    "POST"
+                  ],
+                  "required" : true
+                },
+                "view_type" : {
+                  "type"     : "string",
+                  "enum" : [
+                    "document",
+                    "binary"
+                  ],
+                  "required" : true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

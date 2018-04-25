@@ -1,0 +1,1404 @@
+{
+  "type"        : "object",
+  "id"          : "com-snaplogic-snap_2",
+  "description" : "The common inheritance schema for snaps.",
+  "properties" : {
+    "property_extensions" : {
+      "id"                   : "propertyextensions",
+      "description"          : "All properties below are immutable once defined and declared as readonly",
+      "additionalProperties" : false,
+      "properties" : {
+        "label_text" : {
+          "description"          : "UI label text.",
+          "type"                 : "string",
+          "required"             : true,
+          "readonly"             : true,
+          "additionalProperties" : false
+        },
+        "info_text" : {
+          "description"          : "Help text to understand the property.",
+          "type"                 : "string",
+          "required"             : true,
+          "readonly"             : true,
+          "additionalProperties" : false
+        },
+        "notes_text" : {
+          "description"          : "Longer text",
+          "type"                 : "string",
+          "required"             : false,
+          "readonly"             : true,
+          "additionalProperties" : false
+        },
+        "doc_uri" : {
+          "description"          : "Uri for additional info about property such as an html document describing the component",
+          "type"                 : "string",
+          "pattern"              : "^http",
+          "required"             : false,
+          "readonly"             : true,
+          "additionalProperties" : false
+        },
+        "ui_row_count" : {
+          "description" : "Number of visual rows used in the UI.",
+          "type"        : "integer",
+          "default"     : 1,
+          "maximum"     : 10,
+          "required"    : false,
+          "readonly"    : true
+        },
+        "display_type" : {
+          "description" : "Display type for the UI",
+          "type"        : "string",
+          "enum" : [
+            "hidden",
+            "password",
+            "visible",
+            "expression",
+            "file_browsing",
+            "pipeline_browsing",
+            "runtime_path_browsing",
+            "suggestable",
+            "output_view_aware",
+            "reference",
+            "action",
+            "driver_browsing",
+            "mapper"
+          ],
+          "required"    : false,
+          "readonly"    : true,
+          "default"     : "visible"
+        },
+        "runtime_modes" : {
+          "description" : "The runtime modes to show the property",
+          "required" : false,
+          "readonly" : true,
+          "type": "array",
+          "items": [{
+            "enum": ["MAP-REDUCE", "MAPREDUCE", "SPARKSQL", "SPARK", "STANDARD"]
+          }]
+        },
+        "editor_type" : {
+          "description" : "Type of the button",
+          "type"        : "string",
+          "enum" : [
+            "xml",
+            "sql",
+            "soql",
+            "text",
+            "json",
+            "expression",
+            "oauth2",
+            "oauth1"
+          ],
+          "required"    : false,
+          "readonly"    : true
+        },
+        "sensitivity_level" : {
+          "description" : "The level of sensitivity for the property data",
+          "type"        : "string",
+          "enum" : [
+            "public",
+            "low",
+            "medium",
+            "high"
+          ],
+          "required" : false,
+          "readonly" : true,
+          "default"  : "public"
+        },
+        "schema_awareness_type" : {
+          "description" : "Schema awareness type for the property",
+          "type"        : "string",
+          "enum" : [
+            "accepts_schema",
+            "offers_schema",
+            "consumes_schema"
+          ],
+          "required"    : false,
+          "readonly"    : true
+        },
+        "reference_type" : {
+          "description" : "Reference type for the property",
+          "type"        : "string",
+          "enum" : [
+            "account",
+            "pipeline"
+          ],
+          "required"    : false,
+          "readonly"    : true
+        },
+        "priority_index" : {
+          "description" : "Display priority of this property - used to sort",
+          "type"        : "number",
+          "required"    : false,
+          "readonly"    : true
+        },
+        "value" : {
+          "description" : "The value definition for a property.",
+          "type" : [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "readonly"    : false,
+          "suggestable" : false
+        },
+        "expression": {
+          "description" : "The value definition for a property.",
+          "type"        : "boolean",
+          "readonly"    : false,
+          "default"     : false
+        }
+      }
+    },
+    "account_property_categories" : {
+      "id"                   : "accountpropertycategories",
+      "description"          : "Defines the account property categories, no other categories are allowed",
+      "properties" : {
+        "property_category_list" : {
+          "type"     : "array",
+          "items" : [
+            {
+              "type" : "string"
+            }
+          ],
+          "readonly" : true,
+          "required" : true
+        },
+        "category" : {
+          "type"     : "string",
+          "enum" : [
+            "basic_auth",
+            "ssh",
+            "database",
+            "custom",
+            "none",
+            "oauth1",
+            "oauth2",
+            "aws_s3"
+          ],
+          "readonly" : true,
+          "required" : true
+        },
+        "info" : {
+          "id" : "propertyextensions_info",
+          "additionalProperties" : false,
+          "properties" : {
+            "title" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly"    : true,
+                  "description" : "This is the title attribute value, defined by the snap author in the snap class",
+                  "required"    : true,
+                  "type"        : "string",
+                  "maxLength"   : 50,
+                  "minLength"   : 1
+                },
+                "label_text" : {
+                  "default" : "Title"
+                },
+                "info_text" : {
+                  "default" : "Class title shown for the Snap"
+                },
+                "priority_index" : {
+                  "default" : 30
+                }
+              }
+            },
+            "class_fqid" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly" : true,
+                  "type"     : "string",
+                  "pattern"  : "^[a-z]+-[^_]*_[0-9]+-[a-zA-Z0-9]*",
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 80
+                },
+                "ui_row_count" : {
+                  "default" : 2
+                },
+                "label_text" : {
+                  "default" : "Class FQID"
+                },
+                "info_text" : {
+                  "default" : "The unique identifier of the Snap"
+                }
+              }
+            },
+            "snap_pack_version" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "integer",
+                  "min"      : 1,
+                  "default"  : 1,
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 70
+                },
+                "label_text" : {
+                  "default" : "Snap-pack version"
+                },
+                "info_text" : {
+                  "default" : "The version of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_build_number" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "string",
+                  "default"  : "SNAPSHOT",
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 60
+                },
+                "label_text" : {
+                  "default" : "Snap-pack build-number"
+                },
+                "info_text" : {
+                  "default" : "The build number of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_fqid" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 65
+                },
+                "label_text" : {
+                  "default" : "Snap-pack fqid"
+                },
+                "info_text" : {
+                  "default" : "The fully qualified id of Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_name" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 66
+                },
+                "label_text" : {
+                  "default" : "Snap-pack name"
+                },
+                "info_text" : {
+                  "default" : "The name of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_class_name" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 69
+                },
+                "label_text" : {
+                  "default" : "Snap class name"
+                },
+                "info_text" : {
+                  "default" : "The name of the Snap class."
+                }
+              }
+            },
+            "snap_pack_url" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 68
+                },
+                "label_text" : {
+                  "default" : "Snap-pack URL"
+                },
+                "info_text" : {
+                  "default" : "The URL of the snap pack, it can be relative."
+                }
+              }
+            },
+            "cc_version" : {
+              "required"    : true,
+              "description" : "This is hidden in the UI, it is meaningless to the end user.",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "number",
+                  "required" : true,
+                  "default"  : 4.0
+                },
+                "priority_index" : {
+                  "default" : 90
+                },
+                "label_text" : {
+                  "default" : "Container version"
+                },
+                "info_text" : {
+                  "default" : "The container version of the Snap"
+                },
+                "display_type" : {
+                  "default" : "hidden"
+                }
+              }
+            },
+            "sdk_version" : {
+              "required"    : true,
+              "description" : "This is hidden in the UI, it is meaningless to the end user.",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "number",
+                  "required" : true,
+                  "default"  : 4.0
+                },
+                "priority_index" : {
+                  "default" : 100
+                },
+                "label_text" : {
+                  "default" : "SDK version"
+                },
+                "info_text" : {
+                  "default" : "The SDK version of the Snap"
+                },
+                "display_type" : {
+                  "default" : "hidden"
+                }
+              }
+            },
+            "label" : {
+              "required"    : true,
+              "description" : "User defined label",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "label_text" : {
+                  "default" : "Label"
+                },
+                "info_text" : {
+                  "default" : "User provided label for instance"
+                },
+                "priority_index" : {
+                  "default" : 10
+                }
+              }
+            }
+          }
+        },
+        "settings" : {
+          "description" : "The settings category."
+        }
+      },
+      "additionalProperties" : false
+    },
+    "property_categories" : {
+      "id"                   : "propertycategories",
+      "description"          : "Defines the property categories, no other categories are allowed",
+      "properties" : {
+        "property_category_list" : {
+          "type"     : "array",
+          "items" : [
+            {
+              "type" : "string"
+            }
+          ],
+          "readonly" : true,
+          "required" : true
+        },
+        "category" : {
+          "type"     : "string",
+          "enum" : [
+            "read",
+            "parse",
+            "format",
+            "write",
+            "transform",
+            "flow"
+          ],
+          "readonly" : true,
+          "required" : true
+        },
+        "deprecated" : {
+          "description": "indicates if the snap class is deprecated",
+          "type"     : "boolean",
+          "readonly" : true
+        },
+        "settings" : {
+          "description" : "The settings category."
+        },
+        "input" : {
+          "id"                   : "propertycategories_input",
+          "description"          : "The input views of the Snap.",
+          "additionalProperties" : false,
+          "properties" : {
+            "view_map" : {
+              "id"    : "propertycategories_viewmap",
+              "additionalProperties" : false,
+              "properties" : {
+                "binary" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                },
+                "document" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "patternProperties" : {
+            "^in.*" : {
+              "description"          : "Input view",
+              "additionalProperties" : false,
+              "properties" : {
+                "label" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 10
+                    },
+                    "label_text" : {
+                      "default" : "View Label"
+                    },
+                    "info_text" : {
+                      "default" : "The description for the input view"
+                    }
+                  }
+                },
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 20
+                    },
+                    "label_text" : {
+                      "default" : "View Type"
+                    },
+                    "info_text" : {
+                      "default" : "The type for the input view"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "output" : {
+          "id"                   : "propertycategories_output",
+          "description"          : "The output views of the Snap.",
+          "additionalProperties" : false,
+          "properties" : {
+            "view_map" : {
+              "additionalProperties" : false,
+              "properties" : {
+                "binary" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                },
+                "document" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "patternProperties" : {
+            "^out.*" : {
+              "description"          : "Output view",
+              "additionalProperties" : false,
+              "properties" : {
+                "label" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 10
+                    },
+                    "label_text" : {
+                      "default" : "View Label"
+                    },
+                    "info_text" : {
+                      "default" : "The description for the output view"
+                    }
+                  }
+                },
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 20
+                    },
+                    "label_text" : {
+                      "default" : "View Type"
+                    },
+                    "info_text" : {
+                      "default" : "The type for the output view"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error" : {
+          "id"                   : "propertycategories_error",
+          "description"          : "The error views of the Snap.",
+          "additionalProperties" : false,
+          "properties" : {
+            "view_map" : {
+              "additionalProperties" : false,
+              "properties" : {
+                "binary" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                },
+                "document" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "min_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    },
+                    "max_views" : {
+                      "type"    : "integer",
+                      "default" : 0,
+                      "minimum" : 0
+                    }
+                  }
+                }
+              }
+            },
+            "error_behavior" : {
+              "required" : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              }
+            }
+          },
+          "patternProperties" : {
+            "^err.*" : {
+              "description"          : "Error view",
+              "additionalProperties" : false,
+              "properties" : {
+                "label" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 10
+                    },
+                    "label_text" : {
+                      "default" : "View Label"
+                    },
+                    "info_text" : {
+                      "default" : "The description for the error view"
+                    }
+                  }
+                },
+                "view_type" : {
+                  "extends" : {
+                    "$ref" : "#propertyextensions"
+                  },
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "priority_index" : {
+                      "default" : 20
+                    },
+                    "label_text" : {
+                      "default" : "View Type"
+                    },
+                    "info_text" : {
+                      "default" : "The type for the error view"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "info" : {
+          "required"             : true,
+          "additionalProperties" : false,
+          "properties" : {
+            "purpose" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly"    : true,
+                  "description" : "This is the @description, defined by the snap author in the snap class",
+                  "required"    : true,
+                  "type"        : "string"
+                },
+                "ui_row_count" : {
+                  "default" : 3
+                },
+                "priority_index" : {
+                  "default" : 40
+                },
+                "label_text" : {
+                  "default" : "Purpose"
+                },
+                "info_text" : {
+                  "default" : "The description of the Snap"
+                },
+                "doc_uri" : {
+                  "description" : "This is the @docUri, defined by the snap author in the snap class",
+                  "default"     : "http://doc.snaplogic.com"
+                }
+              }
+            },
+            "class_fqid" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly" : true,
+                  "type"     : "string",
+                  "pattern"  : "^[a-z]+-[^_]*_[0-9]+-[a-zA-Z0-9]*",
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 80
+                },
+                "ui_row_count" : {
+                  "default" : 2
+                },
+                "label_text" : {
+                  "default" : "Class FQID"
+                },
+                "info_text" : {
+                  "default" : "The unique identifier of the Snap"
+                }
+              }
+            },
+            "snap_pack_version" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "integer",
+                  "min"      : 1,
+                  "default"  : 1,
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 70
+                },
+                "label_text" : {
+                  "default" : "Snap-pack version"
+                },
+                "info_text" : {
+                  "default" : "The version of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_build_number" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "string",
+                  "default"  : "SNAPSHOT",
+                  "required" : true
+                },
+                "priority_index" : {
+                  "default" : 60
+                },
+                "label_text" : {
+                  "default" : "Snap-pack build-number"
+                },
+                "info_text" : {
+                  "default" : "The build number of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_fqid" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 65
+                },
+                "label_text" : {
+                  "default" : "Snap-pack fqid"
+                },
+                "info_text" : {
+                  "default" : "The fully qualified id of Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_pack_name" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 66
+                },
+                "label_text" : {
+                  "default" : "Snap-pack name"
+                },
+                "info_text" : {
+                  "default" : "The name of the Snap pack to which the Snap belongs."
+                }
+              }
+            },
+            "snap_class_name" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 69
+                },
+                "label_text" : {
+                  "default" : "Snap class name"
+                },
+                "info_text" : {
+                  "default" : "The name of the Snap class."
+                }
+              }
+            },
+            "snap_pack_url" : {
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type" : "string"
+                },
+                "priority_index" : {
+                  "default" : 68
+                },
+                "label_text" : {
+                  "default" : "Snap-pack URL"
+                },
+                "info_text" : {
+                  "default" : "The URL of the snap pack, it can be relative."
+                }
+              }
+            },
+            "cc_version" : {
+              "required"    : true,
+              "description" : "This is hidden in the UI, it is meaningless to the end user.",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "number",
+                  "required" : true,
+                  "default"  : 4.0
+                },
+                "priority_index" : {
+                  "default" : 90
+                },
+                "label_text" : {
+                  "default" : "Container version"
+                },
+                "info_text" : {
+                  "default" : "The container version of the Snap"
+                },
+                "display_type" : {
+                  "default" : "hidden"
+                }
+              }
+            },
+            "sdk_version" : {
+              "required"    : true,
+              "description" : "This is hidden in the UI, it is meaningless to the end user.",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "type"     : "number",
+                  "required" : true,
+                  "default"  : 4.0
+                },
+                "priority_index" : {
+                  "default" : 100
+                },
+                "label_text" : {
+                  "default" : "SDK version"
+                },
+                "info_text" : {
+                  "default" : "The SDK version of the Snap"
+                },
+                "display_type" : {
+                  "default" : "hidden"
+                }
+              }
+            },
+            "snap_author" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly"    : true,
+                  "description" : "This is the author attribute, defined by the snap author in the snap class",
+                  "required"    : true,
+                  "type"        : "string",
+                  "default"     : "SnapLogic Inc."
+                },
+                "label_text" : {
+                  "default" : "Developer"
+                },
+                "info_text" : {
+                  "default" : "Author of the Snap"
+                },
+                "priority_index" : {
+                  "default" : 50
+                },
+                "ui_row_count" : {
+                  "default" : 2
+                }
+              }
+            },
+            "title" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "readonly"    : true,
+                  "description" : "This is the title attribute value, defined by the snap author in the snap class",
+                  "required"    : true,
+                  "type"        : "string",
+                  "maxLength"   : 50,
+                  "minLength"   : 1
+                },
+                "label_text" : {
+                  "default" : "Title"
+                },
+                "info_text" : {
+                  "default" : "Class title shown for the Snap"
+                },
+                "priority_index" : {
+                  "default" : 30
+                }
+              }
+            },
+            "label" : {
+              "required"    : true,
+              "description" : "User defined label",
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "label_text" : {
+                  "default" : "Label"
+                },
+                "info_text" : {
+                  "default" : "User provided label for instance"
+                },
+                "priority_index" : {
+                  "default" : 10
+                }
+              }
+            },
+            "notes" : {
+              "required"   : true,
+              "extends" : {
+                "$ref" : "#propertyextensions"
+              },
+              "properties" : {
+                "label_text" : {
+                  "default" : "Notes"
+                },
+                "info_text" : {
+                  "default" : "User provided long notes for Snap instance"
+                },
+                "priority_index" : {
+                  "default" : 20
+                },
+                "ui_row_count" : {
+                  "default" : 8
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties" : false
+    },
+    "instance_property_extensions" : {
+      "id"          : "instancepropertyextensions",
+      "description" : "All properties below are immutable once defined and declared as readonly",
+      "properties" : {
+        "value" : {
+          "description" : "The value definition for a property.",
+          "type" : [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object"
+          ],
+          "readonly"    : false,
+          "required"    : false,
+          "suggestable" : false
+        },
+        "key": {
+          "description" : "The encryption key for a property.",
+          "type"        : "string",
+          "readonly"    : false
+        },
+        "sym_key": {
+          "description" : "The symmetric encryption key for a property.",
+          "type"        : "string",
+          "readonly"    : false
+        },
+        "sym_iv": {
+          "description" : "The IV for a symmetrically encrypted property.",
+          "type"        : "string",
+          "readonly"    : false
+        }
+      }
+    },
+    "instanceaccount_property_categories" : {
+      "id"                   : "accountinstancecategories",
+      "description"          : "Defines the account instance categories, no other categories are allowed",
+      "additionalProperties" : false,
+      "properties" : {
+        "info" : {
+          "additionalProperties" : false,
+          "properties" : {
+            "label" : {
+              "extends" : {
+                "$ref" : "#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "description" : "This is the label value, defined by the pipeline author in the UI",
+                  "required"    : true,
+                  "type"        : "string",
+                  "minLength"   : 1
+                }
+              }
+            }
+          }
+        },
+        "settings" : {
+          "description"          : "The settings category.",
+          "id"                   : "instancecategories_account",
+          "additionalProperties" : false
+        }
+      }
+    },
+    "instance_property_categories" : {
+      "id"                   : "instancecategories",
+      "description"          : "Defines the instance categories, no other categories are allowed",
+      "additionalProperties" : false,
+      "properties" : {
+        "info" : {
+          "additionalProperties" : false,
+          "properties" : {
+            "label" : {
+              "extends" : {
+                "$ref" : "#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "description" : "This is the label value, defined by the pipeline author in the UI",
+                  "required"    : true,
+                  "type"        : "string",
+                  "minLength"   : 1
+                }
+              }
+            },
+            "notes" : {
+              "extends" : {
+                "$ref" : "#instancepropertyextensions"
+              },
+              "properties" : {
+                "value" : {
+                  "description" : "This are the notes, defined by the pipeline author in the UI",
+                  "required"    : false,
+                  "type"        : "string"
+                }
+              }
+            }
+          }
+        },
+        "settings" : {
+          "description"          : "The settings category.",
+          "id"                   : "instancecategories_settings",
+          "additionalProperties" : false
+        },
+        "input" : {
+          "id"                   : "instancecategories_input",
+          "description"          : "The input views of the Snap.",
+          "additionalProperties" : false,
+          "patternProperties" : {
+            "^in.*" : {
+              "description"          : "Input view",
+              "additionalProperties" : false,
+              "properties" : {
+                "label" : {
+                  "properties" : {
+                    "value" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  }
+                },
+                "view_type" : {
+                  "required"             : "true",
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "value" : {
+                      "type"     : "string",
+                      "enum" : [
+                        "document",
+                        "binary"
+                      ],
+                      "required" : true
+                    }
+                  }
+                },
+                "schema" : {
+                  "description" : "The schema for the view if any. The schema contained schema is expected to be conform to JSON schema standard (currently version 3). For now the view contains the schema.",
+                  "type"        : "object"
+                }
+              }
+            }
+          }
+        },
+        "output" : {
+          "id"                   : "instancecategories_output",
+          "description"          : "The output views of the Snap.",
+          "additionalProperties" : false,
+          "patternProperties" : {
+            "^out.*" : {
+              "description"          : "TODO: For now we required the output property to start with out, we could say that the next chars need to be a number, etc.",
+              "additionalProperties" : false,
+              "properties" : {
+                "label" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "value" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  }
+                },
+                "view_type" : {
+                  "required"             : "true",
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "value" : {
+                      "type"     : "string",
+                      "enum" : [
+                        "document",
+                        "binary"
+                      ],
+                      "required" : true
+                    }
+                  }
+                },
+                "view_modes" : {
+                  "additionalProperties" : false,
+                  "items" : {
+                    "type" : "object"
+                  }
+                },
+                "data_uris" : {
+                  "description" : "An array of relative data uris. The consumer is expected to know the host and port from where the content can be fetched.",
+                  "type"        : "array",
+                  "items" : [
+                    {
+                      "type" : "string"
+                    }
+                  ]
+                },
+                "header_uris" : {
+                  "description" : "An array of relative data uris. The consumer is expected to know the host and port from where the content can be fetched.",
+                  "type"        : "array",
+                  "items" : [
+                    {
+                      "type" : "string"
+                    }
+                  ]
+                },
+                "view_content" : {
+                  "description" : "Content type of the view.",
+                  "type"        : "string"
+                },
+                "snap_schema_fqid" : {
+                  "description" : "The client side snap schema fqid if any.",
+                  "properties" : {
+                    "instance_id" : {
+                      "description" : "The snap instance id which is unique with the context of a pipeline.",
+                      "type"        : "string"
+                    },
+                    "output_view_id" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "schema" : {
+                  "id"          : "instancecategories_output_schema",
+                  "description" : "The schema for the view if any. The schema contained schema is expected to be conform to JSON schema standard (currently version 3). For now the view contains the schema.",
+                  "type"        : "object"
+                }
+              }
+            }
+          }
+        },
+        "error" : {
+          "id"                   : "instancecategories_error",
+          "description"          : "The error views of the Snap.",
+          "additionalProperties" : false,
+          "patternProperties" : {
+            "^err.*" : {
+              "description"          : "TODO: For now we required the error property to start with err, we could say that the next chars need to be a number, etc.",
+              "additionalProperties" : true,
+              "properties" : {
+                "label" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "value" : {
+                      "type"     : "string",
+                      "required" : true
+                    }
+                  }
+                },
+                "view_type" : {
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "value" : {
+                      "required" : true,
+                      "type"     : "string",
+                      "enum" : [
+                        "document",
+                        "binary"
+                      ]
+                    }
+                  }
+                },
+                "view_modes" : {
+                  "additionalProperties" : false,
+                  "items" : {
+                    "type" : "object"
+                  }
+                },
+                "data_uris" : {
+                  "description" : "An array of relative data uris. The consumer is expected to know the host and port from where the content can be fetched.",
+                  "type"        : "array",
+                  "items" : [
+                    {
+                      "type" : "string"
+                    }
+                  ]
+                },
+                "header_uris" : {
+                  "description" : "An array of relative data uris. The consumer is expected to know the host and port from where the content can be fetched.",
+                  "type"        : "array",
+                  "items" : [
+                    {
+                      "type" : "string"
+                    }
+                  ]
+                },
+                "view_content" : {
+                  "description" : "Content type of the view.",
+                  "type"        : "string"
+                },
+                "snap_schema_fqid" : {
+                  "description" : "The client side snap schema fqid if any.",
+                  "properties" : {
+                    "instance_id" : {
+                      "description" : "The snap instance id which is unique with the context of a pipeline.",
+                      "type"        : "string"
+                    },
+                    "output_view_id" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "schema" : {
+                  "id"          : "instancecategories_output_schema",
+                  "description" : "The schema for the view if any. The schema contained schema is expected to be conform to JSON schema standard (currently version 3). For now the view contains the schema.",
+                  "type"        : "object"
+                }
+              }
+            },
+            "error_behavior" : {
+              "additionalProperties" : false,
+              "properties" : {
+                "value" : {
+                  "required" : true,
+                  "type"     : "string",
+                  "enum" : [
+                    "continue",
+                    "fail",
+                    "ignore"
+                  ],
+                  "default"  : "continue"
+                }
+              }
+            }
+          }
+        },
+        "view_serial" : {
+          "description" : "Used to generate the view ids.",
+          "type"        : "number",
+          "minimum"     : 0,
+          "default"     : 0
+        },
+        "placement" : {
+          "id"                   : "instancecategories_placement",
+          "description"          : "Placement information",
+          "additionalProperties" : false,
+          "properties" : {
+            "location" : {
+              "type" : "string"
+            },
+            "platform" : {
+              "type" : "string"
+            },
+            "language" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

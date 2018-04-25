@@ -1,0 +1,80 @@
+{
+  "id"           : "com-snaplogic-snap-template_2",
+  "description"  : "The common schema for snaps.",
+  "properties" : {
+    "class_id" : {
+      "description" : "",
+      "type"        : "string",
+      "pattern"     : "^[a-z]+-[^_]*$",
+      "required"    : true
+    },
+    "class_fqid" : {
+      "description" : "",
+      "type"        : "string",
+      "pattern"     : "^[a-z]+-[^_]*_[0-9]+-[a-zA-Z0-9]*",
+      "required"    : true
+    },
+    "class_version" : {
+      "description" : "snap version",
+      "type"        : "number",
+      "required"    : true,
+      "minimum"     : 1,
+      "default"     : 2
+    },
+    "class_build_tag" : {
+      "description" : "snap build tag",
+      "type"        : "string",
+      "required"    : true,
+      "default"     : "SNAPSHOT"
+    },
+    "client_id" : {
+      "type" : "string"
+    },
+    "instance_id" : {
+      "type"     : "string",
+      "pattern"  : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+      "required" : true,
+      "default"  : "00000000-0000-0000-0000-000000000000"
+    },
+    "instance_fqid" : {
+      "type"     : "string",
+      "pattern"  : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}_[0-9]+$",
+      "required" : true,
+      "default"  : "00000000-0000-0000-0000-000000000000_1"
+    },
+    "instance_version" : {
+      "type"     : "number",
+      "required" : true,
+      "minimum"  : 1,
+      "default"  : 1
+    },
+    "class_map" : {
+      "description" : "Stores all the immutable definitions.",
+      "extends" : {
+        "$ref" : "com-snaplogic-snap_2#propertycategories"
+      }
+    },
+    "property_map" : {
+      "extends" : {
+        "$ref" : "com-snaplogic-snap_2#instancecategories"
+      },
+      "required" : true
+    }
+  },
+  "class_map" : {
+    "property_category_list" : [
+      "settings",
+      "input",
+      "error",
+      "output",
+      "account",
+      "info"
+    ]
+  },
+  "property_map" : {
+    "view_serial" : 100,
+    "settings":{
+
+    }
+  }
+}

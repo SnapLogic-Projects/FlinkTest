@@ -1,0 +1,666 @@
+{
+  "path_id": "/snaplogic/shared",
+  "do_start": true,
+  "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+  "user_id": "ksubramanian@snaplogic.com",
+  "links": {
+    "link104": {
+      "src_id": "97859d8e-f798-4460-b62f-67943c6f2201",
+      "src_direction": "output",
+      "dst_view_id": "input1",
+      "dst_id": "047a3fa7-faa7-406b-9048-95ff0c1fd881",
+      "src_view_id": "output0",
+      "link_type": "cc"
+    },
+    "link105": {
+      "src_id": "047a3fa7-faa7-406b-9048-95ff0c1fd881",
+      "src_direction": "output",
+      "dst_view_id": "input0",
+      "dst_id": "09a5f10d-234c-45dd-b9d3-f9975131293b",
+      "src_view_id": "output0",
+      "link_type": "cc"
+    },
+    "link102": {
+      "src_id": "08ee8134-059b-4aaa-803c-ab6e1c738781",
+      "src_direction": "output",
+      "dst_view_id": "input0",
+      "dst_id": "97859d8e-f798-4460-b62f-67943c6f2201",
+      "src_view_id": "output1",
+      "link_type": "cc"
+    },
+    "link103": {
+      "src_id": "8c0c71d7-1c44-4f69-9b4a-8ef0ce038a61",
+      "src_direction": "output",
+      "dst_view_id": "input0",
+      "dst_id": "047a3fa7-faa7-406b-9048-95ff0c1fd881",
+      "src_view_id": "output0",
+      "link_type": "cc"
+    },
+    "link100": {
+      "src_id": "1fbbd144-d920-43b7-80b0-f93e64cbd33f",
+      "src_direction": "output",
+      "dst_view_id": "input0",
+      "dst_id": "08ee8134-059b-4aaa-803c-ab6e1c738781",
+      "src_view_id": "output0",
+      "link_type": "cc"
+    },
+    "link101": {
+      "src_id": "08ee8134-059b-4aaa-803c-ab6e1c738781",
+      "src_direction": "output",
+      "dst_view_id": "input0",
+      "dst_id": "8c0c71d7-1c44-4f69-9b4a-8ef0ce038a61",
+      "src_view_id": "output0",
+      "link_type": "cc"
+    }
+  },
+  "ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+  "snap_map": {
+    "09a5f10d-234c-45dd-b9d3-f9975131293b": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_id": "0535ef84-1641-4e2c-8ded-92c880723d20",
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_1-SNAPSHOT",
+        "instance_version": 1,
+        "property_map": {
+          "info": {
+            "label": {
+              "value": "Sink Bot"
+            }
+          },
+          "view_serial": 100,
+          "settings": {
+            "simple_property": {
+              "value": "ALL"
+            }
+          },
+          "input": {
+            "input0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "input0"
+              }
+            }
+          },
+          "error": {
+            "error0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "error0"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "0535ef84-1641-4e2c-8ded-92c880723d20_1",
+        "ruuid": "09a5f10d-234c-45dd-b9d3-f9975131293b"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    },
+    "047a3fa7-faa7-406b-9048-95ff0c1fd881": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_id": "67edd6dd-a700-407d-b455-9cf25792ea05",
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_2-SNAPSHOT",
+        "instance_version": 1,
+        "property_map": {
+          "info": {
+            "label": {
+              "value": "Union"
+            }
+          },
+          "view_serial": 100,
+          "input": {
+            "input0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "input0"
+              }
+            },
+            "input1": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "input1"
+              }
+            }
+          },
+          "settings": {
+            "simple_property": {
+              "value": null
+            }
+          },
+          "error": {
+            "error0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "error0"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          },
+          "output": {
+            "output0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "output0"
+              }
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "67edd6dd-a700-407d-b455-9cf25792ea05_1",
+        "ruuid": "047a3fa7-faa7-406b-9048-95ff0c1fd881"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    },
+    "97859d8e-f798-4460-b62f-67943c6f2201": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_version": 1,
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_1-SNAPSHOT",
+        "instance_id": "c7d370f3-981d-4818-8e91-d1c08aa73b01",
+        "property_map": {
+          "info": {
+            "notes": {
+              "value": null
+            },
+            "label": {
+              "value": "Throttle Bot"
+            }
+          },
+          "view_serial": 100,
+          "input": {
+            "input0": {
+              "label": {
+                "value": "input0"
+              },
+              "view_type": {
+                "value": "document"
+              }
+            }
+          },
+          "settings": {
+            "simple_property": {
+              "value": null
+            }
+          },
+          "error": {
+            "error0": {
+              "label": {
+                "value": "error0"
+              },
+              "view_type": {
+                "value": "document"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          },
+          "output": {
+            "output0": {
+              "label": {
+                "value": "output0"
+              },
+              "view_type": {
+                "value": "document"
+              }
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "c7d370f3-981d-4818-8e91-d1c08aa73b01_1",
+        "ruuid": "97859d8e-f798-4460-b62f-67943c6f2201"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    },
+    "1fbbd144-d920-43b7-80b0-f93e64cbd33f": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_id": "54c7b060-3081-4378-9d38-2f087e78ec99",
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_1-SNAPSHOT",
+        "instance_version": 2,
+        "property_map": {
+          "info": {
+            "notes": {
+              "value": null
+            },
+            "label": {
+              "value": "SourceBot"
+            }
+          },
+          "view_serial": 100,
+          "error": {
+            "error0": {
+              "label": {
+                "value": "error0"
+              },
+              "view_type": {
+                "value": "document"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          },
+          "output": {
+            "output0": {
+              "label": {
+                "value": "output0"
+              },
+              "view_type": {
+                "value": "document"
+              }
+            }
+          },
+          "settings": {
+            "simple_property": {
+              "value": "ALL"
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "54c7b060-3081-4378-9d38-2f087e78ec99_2",
+        "ruuid": "1fbbd144-d920-43b7-80b0-f93e64cbd33f"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    },
+    "8c0c71d7-1c44-4f69-9b4a-8ef0ce038a61": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_id": "5db3b57f-5f18-4781-bf30-e3d77fc765b0",
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_1-SNAPSHOT",
+        "instance_version": 1,
+        "property_map": {
+          "info": {
+            "notes": {
+              "value": null
+            },
+            "label": {
+              "value": "Throttle Bot"
+            }
+          },
+          "view_serial": 100,
+          "input": {
+            "input0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "input0"
+              }
+            }
+          },
+          "settings": {
+            "simple_property": {
+              "value": "ALL"
+            }
+          },
+          "error": {
+            "error0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "error0"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          },
+          "output": {
+            "output0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "output0"
+              }
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "5db3b57f-5f18-4781-bf30-e3d77fc765b0_1",
+        "ruuid": "8c0c71d7-1c44-4f69-9b4a-8ef0ce038a61"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    },
+    "08ee8134-059b-4aaa-803c-ab6e1c738781": {
+      "path_id": "/snaplogic/shared",
+      "parent_pipeline_ruuid": null,
+      "user_id": "ksubramanian@snaplogic.com",
+      "env_map": {},
+      "class_id": "com-snaplogic-snap-prepare-request",
+      "prepare_map": {
+        "pipe_id": "f8ee4540-3378-41c4-9c80-18f60680911b"
+      },
+      "class_fqid": "com-snaplogic-snap-prepare-request_1",
+      "class_version": 1,
+      "pipe_label": "fan-in-fan-out",
+      "parent_ruuid": "ad92f074-0534-41e2-b53b-75bb99b9041b",
+      "data_map": {
+        "instance_id": "e77a2b77-281c-4f87-a461-6166e20c689f",
+        "delivery_options": null,
+        "class_id": "com-snaplogic-spark-test-testsnap",
+        "class_build_tag": "SNAPSHOT",
+        "class_fqid": "com-snaplogic-spark-test-testsnap_1-SNAPSHOT",
+        "instance_version": 1,
+        "property_map": {
+          "info": {
+            "label": {
+              "value": "Copy"
+            }
+          },
+          "view_serial": 100,
+          "input": {
+            "input0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "input0"
+              }
+            }
+          },
+          "settings": {
+            "simple_property": {
+              "value": null
+            }
+          },
+          "error": {
+            "error0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "error0"
+              }
+            },
+            "error_behavior": {
+              "value": "fail"
+            }
+          },
+          "output": {
+            "output0": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "output0"
+              }
+            },
+            "output1": {
+              "view_type": {
+                "value": "document"
+              },
+              "label": {
+                "value": "output1"
+              }
+            }
+          }
+        },
+        "class_version": 1,
+        "instance_fqid": "e77a2b77-281c-4f87-a461-6166e20c689f_1",
+        "ruuid": "08ee8134-059b-4aaa-803c-ab6e1c738781"
+      },
+      "create_time": 1438730397.484765,
+      "mode": "regular",
+      "account_map": null,
+      "plex_path": "/snaplogic/shared/cloud",
+      "api_key": "Uil/bybXrabUpahu8udqzupoHJZInV+r+M/ElIFxEFd75aysMsLJ902iDHHWtI4jCb0/CPGlecQjSyS9g2gwVPQs",
+      "pipe_invoker": null
+    }
+  },
+  "ttl": 300,
+  "llfeed_context": {},
+  "views": {
+    "09a5f10d-234c-45dd-b9d3-f9975131293b": {
+      "output_views": {},
+      "input_views": {
+        "input0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    },
+    "047a3fa7-faa7-406b-9048-95ff0c1fd881": {
+      "output_views": {
+        "output0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "input_views": {
+        "input0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        },
+        "input1": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    },
+    "97859d8e-f798-4460-b62f-67943c6f2201": {
+      "output_views": {
+        "output0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "input_views": {
+        "input0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    },
+    "1fbbd144-d920-43b7-80b0-f93e64cbd33f": {
+      "output_views": {
+        "output0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "input_views": {},
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    },
+    "8c0c71d7-1c44-4f69-9b4a-8ef0ce038a61": {
+      "output_views": {
+        "output0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "input_views": {
+        "input0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    },
+    "08ee8134-059b-4aaa-803c-ab6e1c738781": {
+      "output_views": {
+        "output0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        },
+        "output1": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "input_views": {
+        "input0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      },
+      "error_views": {
+        "error0": {
+          "feed_view_type": null,
+          "method": "GET",
+          "view_type": "document"
+        }
+      }
+    }
+  }
+}
